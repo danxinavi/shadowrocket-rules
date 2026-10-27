@@ -1,0 +1,10 @@
+host-suffix,doubleclick.net,reject
+host-suffix,googlesyndication.com,reject
+host-suffix,googleadservices.com,reject
+host-suffix,adservice.google.com,reject
+host-suffix,ads.yahoo.com,reject
+host-suffix,analytics.google.com,reject
+host-suffix,umeng.com,reject
+host-suffix,umengcloud.com,reject
+host-suffix,talkingdata.com,reject
+host-suffix,admob.com,reject
