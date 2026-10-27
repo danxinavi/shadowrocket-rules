@@ -1,0 +1,50 @@
+# Clash / Mihomo 配置模板 · 规则部分已就绪，节点部分请换成你自己的
+# Clash Template: rules are ready, replace proxies with your own subscription.
+# 规则集用远程 rule-provider，更新方式：Clash 里更新 rule-provider / 配置即可。
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+dns:
+  enable: true
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+proxies:
+  # 把下面换成你自己的节点（订阅或手动节点），名字要和 proxy-groups 里对应
+  # Replace with your own proxies.
+  - name: "MyNode"
+    type: socks5
+    server: 127.0.0.1
+    port: 1080
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - MyNode
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/danxinavi/shadowrocket-rules/main/ruleset/clash/reject.yaml"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/danxinavi/shadowrocket-rules/main/ruleset/clash/direct.yaml"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/danxinavi/shadowrocket-rules/main/ruleset/clash/proxy.yaml"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+rules:
+  - RULE-SET,reject,REJECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,proxy,PROXY
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,PROXY
