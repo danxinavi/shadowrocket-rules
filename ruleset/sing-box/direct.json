@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "weixin.qq.com",
+        "qq.com",
+        "tencent.com",
+        "gtimg.cn",
+        "baidu.com",
+        "alipay.com",
+        "taobao.com",
+        "tmall.com",
+        "alibaba.com",
+        "aliyun.com",
+        "aliyuncs.com",
+        "jd.com",
+        "pinduoduo.com",
+        "douyin.com",
+        "bytedance.com",
+        "bytecdn.cn",
+        "toutiao.com",
+        "bilibili.com",
+        "zhihu.com",
+        "weibo.com",
+        "sina.com",
+        "163.com",
+        "126.com",
+        "netease.com",
+        "youku.com",
+        "iqiyi.com",
+        "mgtv.com",
+        "amap.com",
+        "didiglobal.com",
+        "meituan.com",
+        "ele.me",
+        "apple.com.cn",
+        "icloud.com.cn",
+        "apple.com",
+        "icloud.com",
+        "12306.cn",
+        "damai.cn",
+        "damai.com",
+        "unionpay.com",
+        "95516.com"
+      ]
+    }
+  ]
+}
