@@ -1,0 +1,12 @@
+# 广告 / 追踪域名（每行一个，只列常见的，避免误伤）
+# Ads / tracking: REJECT
+doubleclick.net
+googlesyndication.com
+googleadservices.com
+adservice.google.com
+ads.yahoo.com
+analytics.google.com
+umeng.com
+umengcloud.com
+talkingdata.com
+admob.com
