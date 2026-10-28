@@ -81,6 +81,7 @@ IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
 IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
 IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
 IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
 DOMAIN-SUFFIX,local,DIRECT
 DOMAIN-SUFFIX,lan,DIRECT
 RULE-SET,{BASE}/ruleset/reject.list,REJECT
@@ -131,6 +132,11 @@ Proxy = direct
 PROXY = select, Proxy
 
 [Rule]
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
 RULE-SET,{BASE}/ruleset/reject.list,REJECT
 RULE-SET,{BASE}/ruleset/direct.list,DIRECT
 RULE-SET,{BASE}/ruleset/proxy.list,PROXY
@@ -185,6 +191,11 @@ rule-providers:
     path: ./ruleset/proxy.yaml
     interval: 86400
 rules:
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - RULE-SET,reject,REJECT
   - RULE-SET,direct,DIRECT
   - RULE-SET,proxy,PROXY
@@ -212,6 +223,7 @@ server_check_url = http://www.gstatic.com/generate_204
 ip-cidr,192.168.0.0/16,direct
 ip-cidr,10.0.0.0/8,direct
 ip-cidr,172.16.0.0/12,direct
+ip-cidr,100.64.0.0/10,direct
 geoip,cn,direct
 final,proxy
 """
