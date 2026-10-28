@@ -72,6 +72,20 @@ docs/CLIENTS.md     各客户端对照表（中英文）
 shadowrocket.conf   根目录同款，供老链接继续使用
 ```
 
+### 自动维护（每天自动跑，不用人工盯）
+
+GitHub Action 每天早上 05:30（北京时间）自动跑一次 `scripts/check_and_clean.py` + `scripts/build.py`：
+- 去重、删格式错误的域名、删 IP 地址，立即生效
+- DNS 查域名：连续 3 天都解析不到的才删，避免一天网络抖动误删；删了的会在提交记录里写清楚，误删可以从历史里找回来
+- 重新生成所有客户端文件，提交回仓库
+
+客户端那边：
+- Clash 系：rule-provider 的更新间隔已设为 86400 秒（每天），会自动拉最新规则
+- 小火箭：配置列表里点一下更新，就拿到最新版；也可以在设置 → 订阅里打开“打开时更新”和后台自动更新（这是管节点订阅的，配置还是以点更新为准）
+- 其他客户端：按 `docs/CLIENTS.md` 里各自的更新方式，规则集更新后都会生效
+
+这个自动维护只做清理和重新生成，不会凭空发明新域名。想加一个新服务（比如新出的 AI 工具、新 App），还是跟我说域名，我加到 `domains/*.txt` 里，下次自动检查就会一起生成。
+
 ### 参考
 
 - Johnshall/Shadowrocket-ADBlock-Rules-Forever（3.16 万星，每日重建）
@@ -119,6 +133,20 @@ Do not edit generated files by hand; they are overwritten on the next build:
 1. Edit `domains/direct.txt`, `domains/proxy.txt`, or `domains/reject.txt` (one domain per line)
 2. Run `python3 scripts/build.py` to regenerate all client files
 3. Commit to the repo; clients get the new rules on their next update
+
+### Automatic Maintenance (runs daily, no manual watching)
+
+A GitHub Action runs every day at 05:30 Asia/Shanghai, running `scripts/check_and_clean.py` + `scripts/build.py`:
+- Deduplicate, drop malformed domains and IP literals, immediately
+- DNS-check domains: only a domain dead 3 days in a row is deleted, so a one-day network blip cannot delete a good domain; deletions are listed in the commit history and can be restored
+- Regenerate all client files and commit back to the repo
+
+On the client side:
+- Clash family: rule-providers refresh every 86400 seconds (daily) automatically
+- Shadowrocket: tap update on the config to get the latest version
+- Other clients: follow their update method in `docs/CLIENTS.md`
+
+Automatic maintenance only cleans and regenerates; it never invents new domains. To add a new service, tell Ren the domain, it goes into `domains/*.txt`, and the next daily run generates it everywhere.
 
 ### References
 
