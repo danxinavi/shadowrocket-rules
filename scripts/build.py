@@ -99,6 +99,17 @@ localhost = 127.0.0.1
 ^https?://(www.)?g.cn https://www.google.com 302
 ^https?://(www.)?google.cn https://www.google.com 302
 """
+    # MITM hostname lives in mitm-hostname.txt (one per line, no certificate
+    # in the repo); if present, append it so remote updates keep the list.
+    mitm_file = ROOT / "mitm-hostname.txt"
+    if mitm_file.exists():
+        hosts = [l.strip() for l in mitm_file.read_text(encoding="utf-8").splitlines()
+                 if l.strip() and not l.strip().startswith("#")]
+        sr += ("\n[MITM]\n"
+               "# MITM hostname list, cleaned by scripts/check_and_clean.py.\n"
+               "# No certificate in this repo: generate and trust one in the app.\n"
+               "enable = true\n"
+               "hostname = " + ", ".join(hosts) + "\n")
     (ROOT / "configs" / "shadowrocket.conf").write_text(sr, encoding="utf-8")
     (ROOT / "shadowrocket.conf").write_text(sr, encoding="utf-8")
 
